@@ -1,0 +1,14 @@
+---
+
+- name: Network Getting Started First Playbook
+  hosts: all
+  tasks:
+    - name: Display the config
+      debug:
+        msg: "The hostname is {{ env }} and the OS is"
+    - aws_s3_bucket_info:
+      register: result
+
+    - name: List buckets
+      debug:
+        msg: "{{ result['buckets'] }}"

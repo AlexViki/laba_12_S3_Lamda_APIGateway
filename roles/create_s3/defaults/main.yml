@@ -1,0 +1,4 @@
+---
+# defaults file for roles/create_s3
+
+aws_region: eu-west-2

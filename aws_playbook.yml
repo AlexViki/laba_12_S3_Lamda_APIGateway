@@ -1,0 +1,7 @@
+---
+- name: "AWS S3, Lamda, SQS infra"
+  hosts: all
+  roles:
+  - role: "create_s3"
+# EOF
+

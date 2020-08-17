@@ -1,0 +1,7 @@
+---
+# Create a simple s3 bucket
+- name: Create an empty bucket
+  aws_s3:
+    bucket: alex-sheol-{{ env }}
+    mode: create
+    permission: public-read

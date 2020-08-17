@@ -1,0 +1,5 @@
+---
+# tasks file for create_s3
+- name: "Create S3 bucket"
+  import_tasks: "01_create_s3.yml"
+
