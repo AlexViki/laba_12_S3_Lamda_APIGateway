@@ -2,6 +2,10 @@
 # Create a simple s3 bucket
 - name: Create an empty bucket
   aws_s3:
-    bucket: alex-sheol-{{ env }}
+#    aws_access_key: "{{ access_key }}"
+#    aws_secret_key: "{{ secret_key }}"
+    bucket: "{{ s3_name }}-{{ env }}"
     mode: create
-    permission: public-read
+    permission: 
+     - private
+#    region: eu-west-1

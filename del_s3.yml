@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  hosts: all
+  tasks:
+   - name: Del S3 bucket
+     aws_s3:
+#      aws_access_key: "{{ access_key }}"
+#      aws_secret_key: "{{ secret_key }}"
+       bucket: "alexviki-producer-{{ env }}"
+       mode: delete
