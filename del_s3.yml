@@ -8,3 +8,4 @@
 #      aws_secret_key: "{{ secret_key }}"
        bucket: "alexviki-producer-{{ env }}"
        mode: delete
+       region: eu-west-2

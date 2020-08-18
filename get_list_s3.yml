@@ -5,10 +5,11 @@
   tasks:
     - name: Display the config
       debug:
-        msg: "The hostname is {{ env }} and the OS is"
+        msg: "-----------------env: {{ env }}"
     - aws_s3_bucket_info:
+#      region: "ca-central-1"
       register: result
 
     - name: List buckets
       debug:
-        msg: "{{ result['buckets'] }}"
+        msg: "{{ result['buckets'][0]['name'] }}"

@@ -1,0 +1,4 @@
+---
+# Create a simple s3 bucket
+- name: Create an empty bucket
+  shell: aws s3api create-bucket --bucket {{ s3_name }}-{{ env }} --region {{ aws_region }} --create-bucket-configuration LocationConstraint={{ aws_region }} --acl private
