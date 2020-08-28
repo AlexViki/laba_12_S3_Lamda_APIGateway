@@ -1,0 +1,11 @@
+---
+- name: create S3 bucket
+  s3_bucket:
+      name: "betmakers-{{ env }}"
+      policy: "{{ lookup( 'file','/home/alex/lsm/policy_s3.json' )}}"
+      state: present
+      region: "{{ aws_region }}"
+      versioning: no
+      tags:
+         name: tag1
+         type: tag2

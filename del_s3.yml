@@ -1,11 +1,12 @@
 ---
-- hosts: localhost
-  hosts: all
+- hosts: all
   tasks:
-   - name: Del S3 bucket
-     aws_s3:
+    - name: Delete S3 backet
+      shell: aws s3api delete-bucket --bucket {{ s3_name }} --region {{ aws_region }}
+#     aws_s3:
 #      aws_access_key: "{{ access_key }}"
 #      aws_secret_key: "{{ secret_key }}"
-       bucket: "alexviki-producer-{{ env }}"
-       mode: delete
-       region: eu-west-2
+#       bucket: "{{ s3_name }}-{{ env }} "
+#       mode: delete
+#       region: "{{ aws_region }}"
+    

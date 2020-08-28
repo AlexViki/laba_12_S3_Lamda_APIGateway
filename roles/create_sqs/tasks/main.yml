@@ -1,0 +1,4 @@
+---
+# tasks file for create_SQS
+- name: "Create SQS"
+  import_tasks: "01_create_sqs.yml"

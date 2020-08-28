@@ -1,15 +1,12 @@
 ---
 
 - name: Network Getting Started First Playbook
-  hosts: all
+  hosts: servers
+  connection: local
   tasks:
-    - name: Display the config
-      debug:
-        msg: "-----------------env: {{ env }}"
     - aws_s3_bucket_info:
-#      region: "ca-central-1"
       register: result
-
     - name: List buckets
       debug:
-        msg: "{{ result['buckets'][0]['name'] }}"
+        msg: "{{ result['buckets'] }}"
+#        msg: "{{ result['buckets'][0]['name'] }}"

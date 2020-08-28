@@ -1,16 +1,29 @@
 ---
-# Create a simple s3 bucket
-- name: Create an empty bucket
-  aws_s3:
-#    aws_access_key: "{{ access_key }}"
-#    aws_secret_key: "{{ secret_key }}"
-    bucket: "{{ s3_name }}-{{ env }}"
-    mode: create
-    permission: private
-    region: "eu-west-2"
-#    region: "eu-south-1"
+- name: Create an empty S3 bucket
+  shell: >
+     aws s3api create-bucket 
+     --bucket {{ s3_name }} 
+     --region {{ aws_region }} 
+     --create-bucket-configuration LocationConstraint={{ aws_region }}
 
-#- s3_bucket:
-#      name: "{{ s3_name }}-{{ env }}-2"
-#      state: present
-#      region: "eu-south-1"
+- name: Configure an empty S3 bucket
+  shell: >
+     aws s3api put-public-access-block 
+     --bucket {{ s3_name }}
+     --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"
+
+- name: Configure policy for S3
+  template:
+    dest: "/tmp/{{ s3_name }}.json"
+    src: "policy.j2"
+
+- name: Set policy to S3 bucket
+  shell: >
+    aws s3api put-bucket-policy 
+    --bucket {{ s3_name }} 
+    --policy file:///tmp/{{ s3_name }}.json
+    
+- name: Delete S3 file policy JSON
+  file:
+    path: /tmp/{{ s3_name }}.json
+    state: absent

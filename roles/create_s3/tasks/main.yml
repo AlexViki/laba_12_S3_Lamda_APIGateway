@@ -1,6 +1,6 @@
 ---
 # tasks file for create_s3
 - name: "Create S3 bucket"
-#  import_tasks: "01_create_s3.yml"
-  import_tasks: "02_create_s3_cli.yml"
-
+  import_tasks: "01_create_s3.yml"
+#  import_tasks: "02_create_s3_cli.yml"
+#  import_tasks: "03_create_s3_bucket.yml"

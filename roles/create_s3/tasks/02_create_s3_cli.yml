@@ -1,4 +1,10 @@
 ---
 # Create a simple s3 bucket
-- name: Create an empty bucket
-  shell: aws s3api create-bucket --bucket {{ s3_name }}-{{ env }} --region {{ aws_region }} --create-bucket-configuration LocationConstraint={{ aws_region }} --acl private
+- name: Configure an empty bucket
+#  shell: aws s3api create-bucket --bucket {{ s3_name }}-{{ env }}-s3api --create-bucket-configuration LocationConstraint={{ aws_region }} 
+#   shell aws s3api put-bucket-acl --bucket {{ s3_name }}-{{ env }} --region {{ aws_region }} --grant-full-control id=$ORG_ID:$ORG_ID
+#  shell: aws s3api create-bucket --bucket {{ s3_name }}-{{ env }}-s3apit --region {{ aws_region }} --create-bucket-configuration LocationConstraint={{ aws_region }}
+  command: >
+     aws s3api put-public-access-block 
+        --bucket {{ s3_name }}-{{ env }}
+        --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"
