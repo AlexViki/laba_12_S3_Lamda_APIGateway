@@ -1,0 +1,5 @@
+---
+- name: "AWS SQS"
+  hosts: localhost
+  roles:
+  - role: "create_sqs"

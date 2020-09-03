@@ -1,13 +1,11 @@
-# Create SQS queue with redrive policy
-- sqs_queue:
-    name: my-queue
-    region: ap-southeast-2
-    default_visibility_timeout: 120
-    message_retention_period: 86400
-    maximum_message_size: 1024
-    delivery_delay: 30
-    receive_message_wait_time: 20
-    policy: "{{ json_dict }}"
-    redrive_policy:
-      maxReceiveCount: 5
-      deadLetterTargetArn: arn:aws:sqs:eu-west-1:123456789012:my-dead-queue
+---
+  - name: Copy attributes for SQS
+    template:
+      dest: "/tmp/attributes-queue-{{ sqs_name }}.json"
+      src: "attributes-queue.j2"
+  
+  - name: "Create SQS queue, setup attributes"
+    shell: >
+       aws sqs create-queue --queue-name {{ sqs_name }}
+       --attributes file:///tmp/attributes-queue-{{ sqs_name }}.json
+       --region {{ aws_region }}

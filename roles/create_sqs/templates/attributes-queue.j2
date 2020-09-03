@@ -1,0 +1,8 @@
+{
+    "FifoQueue":"true",
+    "ContentBasedDeduplication":"true",
+    "VisibilityTimeout":"1800",
+    "MessageRetentionPeriod":"5400",
+    "MaximumMessageSize": "262144",
+    "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"MyPolicy15\",\"Statement\":[{\"Sid\":\"Stmt-1\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::{{ arn_aws_iam }}:root\"},\"Action\":\"sqs:*\",\"Resource\":\"arn:aws:sqs:{{ aws_region }}:{{ arn_aws_iam }}:{{ sqs_name }}/*\"}]}"
+}

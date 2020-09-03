@@ -1,2 +1,6 @@
 ---
 # defaults file for roles/create_sqs
+sqs_name:    "test-sqs.fifo"
+aws_region:  "eu-west-2"
+# Exemple, need to use vault
+arn_aws_iam: "111111111111"
